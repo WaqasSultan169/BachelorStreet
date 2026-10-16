@@ -12,22 +12,40 @@ const manrope = Manrope({
   display: "swap",
 });
 
-/**
- * Display face: a heavy grotesque that reads as confident fast-food branding
- * rather than a café serif. Used for headlines, prices and the wordmark.
- */
 const archivo = Archivo({
   variable: "--font-archivo",
   subsets: ["latin"],
   display: "swap",
 });
 
+// ✅ Safe URL helper function
+function getBaseUrl(): URL {
+  const envUrl = process.env.NEXT_PUBLIC_APP_URL || process.env.APP_URL;
+  
+  if (envUrl) {
+    try {
+      // Agar https:// na laga ho toh auto-add kar do
+      const formattedUrl = envUrl.startsWith("http") ? envUrl : `https://${envUrl}`;
+      return new URL(formattedUrl);
+    } catch {
+      // Catch error agar URL bilkul invalid ho
+    }
+  }
+
+  // Vercel deployment URL ya Fallback Localhost
+  if (process.env.VERCEL_URL) {
+    return new URL(`https://${process.env.VERCEL_URL}`);
+  }
+
+  return new URL("http://localhost:3000");
+}
+
 export const metadata: Metadata = {
   title: {
     default: "Bachelor's Street | Fast Food & Online Ordering",
     template: "%s | Bachelor's Street",
   },
-  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? process.env.APP_URL ?? "http://localhost:3000"),
+  metadataBase: getBaseUrl(), // ✅ Fixed safe URL call
   description:
     "Explore burgers, crispy chicken, fries, pizza and meal deals at Bachelor's Street in H-13, Islamabad. Choose pickup or delivery and order your favourites.",
   keywords: [
