@@ -1,0 +1,140 @@
+@import "tailwindcss";
+
+@theme {
+  /* Charcoal — deep warm neutrals */
+  --color-charcoal-50: #f4f0ea;
+  --color-charcoal-100: #e5ded4;
+  --color-charcoal-200: #cec4b8;
+  --color-charcoal-300: #b0a495;
+  --color-charcoal-400: #8f8171;
+  --color-charcoal-500: #6f6153;
+  --color-charcoal-600: #55483c;
+  --color-charcoal-700: #3d342b;
+  --color-charcoal-800: #2c251f;
+  --color-charcoal-900: #1f1a16;
+  --color-charcoal-950: #161210;
+
+  /* Cream — warm paper whites */
+  --color-cream-50: #fbf8f2;
+  --color-cream-100: #f5efe4;
+  --color-cream-200: #ebdfcc;
+  --color-cream-300: #decbb0;
+
+  /* Tomato — signature red */
+  --color-tomato-100: #fbe4dd;
+  --color-tomato-300: #ef8a72;
+  --color-tomato-400: #e2543b;
+  --color-tomato-500: #d63a26;
+  --color-tomato-600: #c22a1b;
+  --color-tomato-700: #a81f14;
+
+  /* Muted gold — accents */
+  --color-gold-200: #f0e0b8;
+  --color-gold-300: #e4cb8a;
+  --color-gold-400: #d6b25e;
+  --color-gold-500: #c49a45;
+  --color-gold-600: #a97f2e;
+  --color-gold-700: #8f6b24;
+
+  /* Flame — fiery orange for energetic CTAs and highlights */
+  --color-flame-100: #ffedd5;
+  --color-flame-200: #fed7aa;
+  --color-flame-300: #fdba74;
+  --color-flame-400: #fb923c;
+  --color-flame-500: #f97316;
+  --color-flame-600: #ea580c;
+  --color-flame-700: #c2410c;
+
+  /* Ink — near-black used for dramatic sections */
+  --color-ink-700: #241c16;
+  --color-ink-800: #17110d;
+  --color-ink-900: #100c09;
+  --color-ink-950: #0a0705;
+
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-archivo), var(--font-manrope), ui-sans-serif, system-ui,
+    sans-serif;
+
+  --shadow-card: 0 1px 2px rgb(22 18 15 / 0.04), 0 8px 24px -12px rgb(22 18 15 / 0.12);
+  --shadow-lift: 0 12px 40px -12px rgb(22 18 15 / 0.28);
+  --shadow-glow: 0 18px 50px -18px rgb(249 115 22 / 0.55);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-cream-50 font-sans text-charcoal-900 antialiased;
+  }
+
+  ::selection {
+    @apply bg-tomato-600 text-white;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-tomato-500);
+    outline-offset: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-delay: 0s !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Autoplay progress line for the storefront hero carousel. Declared as plain
+   CSS (not a Tailwind utility) so it is always emitted; the component drives
+   the duration inline and pauses it via `animation-play-state`. */
+@keyframes hero-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* Staggered copy entrance for the hero carousel. Kept in CSS rather than in a
+   JS animation library so the server and client render identical markup (no
+   hydration mismatch) and so the reduced-motion rule above neutralises it. */
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@layer utilities {
+  .hero-rise {
+    animation: hero-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  /* Hide the scrollbar visually while preserving scroll (used by the admin
+     sidebar). Scoped to the element so global scrolling is unaffected. */
+  .no-scrollbar {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE / legacy Edge */
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Chromium Edge */
+    width: 0;
+    height: 0;
+  }
+}

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 432 96" width="432" height="96" role="img" aria-label="Bachelor's Street — H-13, Islamabad">
+  <defs>
+    <linearGradient id="bsFlameLockup" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffb257" />
+      <stop offset="0.5" stop-color="#f97316" />
+      <stop offset="1" stop-color="#c22a1b" />
+    </linearGradient>
+  </defs>
+
+  <g transform="translate(0 16)">
+    <rect width="64" height="64" rx="19" fill="url(#bsFlameLockup)" />
+    <path d="M5 40c5-5 8-11 10-19 2 5 1 10-1 14 4-2 7-6 10-10-1 8-5 14-11 17-3 1-6 0-8-2Z" fill="#ffd166" transform="scale(1.3333)" />
+    <path d="M17 5h11c8 0 12 4 12 11 0 4-2 7-6 9 5 1 8 5 8 10 0 8-6 12-16 12H9l3-42h5Zm6 8-1 8h6c3 0 4-1 4-4s-1-4-4-4h-5Zm-2 15-1 10h8c3 0 5-1 5-5 0-3-2-5-5-5h-7Z" fill="#fff" fill-rule="evenodd" transform="scale(1.3333)" />
+  </g>
+
+  <text x="86" y="49" font-family="Archivo, Manrope, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="30" font-weight="900" letter-spacing="-0.5" fill="#fbf8f2">
+    BACHELOR&#8217;S STREET
+  </text>
+  <text x="86" y="73" font-family="Manrope, ui-sans-serif, system-ui, sans-serif" font-size="12" font-weight="700" letter-spacing="4" fill="#f97316">
+    H-13, ISLAMABAD
+  </text>
+</svg>
